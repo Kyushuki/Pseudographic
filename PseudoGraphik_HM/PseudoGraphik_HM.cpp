@@ -11,7 +11,7 @@ double parabola(double x) {
 	return x * x;
 }
 
-double cube(double x) {
+double cubix(double x) {
 	return x * x * x;
 }
 
@@ -44,42 +44,36 @@ void drawSymbolPlot(double(&func)(double), double xMax, double xMin, int stepCou
 			minNormY = normalY[i];
 		}
 	}
-	double maxNormY = normalY[0];
+	int maxNormY = normalY[0];
 	for (int i = 0; i <= stepCount; i++) {  // находит максимальное значение у
 		if (normalY[i] > maxNormY) {
 			maxNormY = normalY[i];
 		}
 	}
-	for (int j = 0; j <= maxNormY - 1; j++) { // печатает ветку оси OY
-		cout << "_";
-	}
-	cout << "_ y" << endl;
-	for (int i = 0; i <= stepCount; i++) {    // выводит функцию
 
-		cout << "|";                          // вывод части рамки по оси х
-		for (int k = 0; k <= normalY[i] - 1; k++) {
-			cout << ' ';
-		}
-		if (normalY[i] == minNormY) { // проверка на минимальное значение по оси у
-			cout << "%" << endl;
-		}
-		else if (normalY[i] == maxNormY) { //проверка на максимальное значение по оси х
-			cout << "#" << endl;
-		}
-		else {
-			cout << '*' << endl;
-		}
+	string GraphA[stepCount + 1][maxNormY + 1];
 
+	for (int i = 0; i <= stepCount; i++) {
+		for (int j = 0; j <= maxNormY; j++) {
+			GraphA[i][j] = " ";
+		}
 	}
-	cout << "x" << endl;
+	for (int i = 0; i <= stepCount; i++) {
+		for (int j = 0; j <= maxNormY; j++) {
+			if (j == normalY[i]) {
+				GraphA[i][j] = "*";
+			}
+		}
+	}
+	for (int i = 0; i <= stepCount; i++) {
+		for (int j = 0; j <= maxNormY; j++) {
+			cout << GraphA[i][j];
+		}
+		cout << endl;
+	}
 }
-
-int main()
-{
-	cout << "Справка: % - минимальное значение OY; # - максимальное значение OY" << endl;
+int main() {
+	drawSymbolPlot(cubix, -3, 3, 10);
 	drawSymbolPlot(parabola, -5, 5, 20);
 	drawSymbolPlot(linear, -5, 5, 10);
-	drawSymbolPlot(cube, -3.5, 3.5, 20);
-	return 0;
 }
-
