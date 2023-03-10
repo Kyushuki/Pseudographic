@@ -11,7 +11,7 @@ double parabola(double x) {
 	return x * x;
 }
 
-double cubix(double x) {
+double cube(double x) {
 	return x * x * x;
 }
 
@@ -71,9 +71,10 @@ void drawSymbolPlot(double(&func)(double), double xMax, double xMin, int stepCou
 		}
 		cout << endl;
 	}
+	cout << endl;
 }
 int main() {
-	drawSymbolPlot(cubix, -3, 3, 10);
+	drawSymbolPlot(cube, -3, 3, 10);
 	drawSymbolPlot(parabola, -5, 5, 20);
 	drawSymbolPlot(linear, -5, 5, 10);
 }
