@@ -74,12 +74,33 @@ void drawSymbolPlot(double(&func)(double), double xMax, double xMin, int stepCou
 	cout << "x" << endl;
 }
 
-int main()
+int main(int x)
 {
-	cout << "Справка: % - минимальное значение OY; # - максимальное значение OY" << endl;
-	drawSymbolPlot(parabola, -5, 5, 20);
-	drawSymbolPlot(linear, -5, 5, 10);
-	drawSymbolPlot(cube, -3.5, 3.5, 20);
+	int y = 1;
+	while (y == 1) {
+		cout << "Добро пожаловать в 'Мастер Графиков'. Версия 1.1. \n";
+		cout << "Выберите функцию:\n";
+		cout << " 1 - парабола\n";
+		cout << " 2 - кубическая парабола\n";
+		cout << " 3 - линейная функция\n";
+		cin >> x;
+		if (x == 1) {
+			drawSymbolPlot(parabola, -5, 5, 20);
+			y = 1;
+		}
+		else if (x == 2) {
+			drawSymbolPlot(cube, -2.5, 2.5, 20);
+			y = 1;
+		}
+		else if (x == 3) {
+			drawSymbolPlot(linear, -5, 5, 20);
+			y = 1;
+		}
+		else {
+			cout << "Введено некорректное значение, пожалуйста, завершите программу и начните заново";
+			y = 2;
+		}
+	}
 	return 0;
 }
 
