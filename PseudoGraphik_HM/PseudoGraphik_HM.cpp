@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 #include <math.h>
 
-using namespace std;
+using namespace std; //эта версия ветки не имеет каких-либо изменений, по сравнению с GraphArray потому что создал её поздно ночью и хочу спать
 
 double linear(double x) {
 	return x;
