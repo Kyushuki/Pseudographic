@@ -51,22 +51,31 @@ void drawSymbolPlot(double(&func)(double), double xMax, double xMin, int stepCou
 		}
 	}
 
-	string GraphA[stepCount + 1][maxNormY + 1];
+	string GraphA[stepCount + 2][maxNormY + 2]; 
 
-	for (int i = 0; i <= stepCount; i++) {
-		for (int j = 0; j <= maxNormY; j++) {
+	for (int i = 0; i <= stepCount + 1; i++) { //заполняет массив пустыми значениями(пробелами)
+		for (int j = 0; j <= maxNormY + 1; j++) {
 			GraphA[i][j] = " ";
 		}
 	}
-	for (int i = 0; i <= stepCount; i++) {
-		for (int j = 0; j <= maxNormY; j++) {
+	for (int j = 0; j <= maxNormY + 2; j++) { //заполняет ось ОУ в массиве
+		GraphA[0][j] = "-";
+	}
+
+	for (int i = 0; i <= stepCount + 1; i++) { //заполняет ось ОХ в массиве
+		GraphA[i][0] = "|";
+	}
+	for (int i = 0; i <= stepCount + 1; i++) { //заполняет массив значениями графика
+		for (int j = 0; j <= maxNormY + 1; j++) {
 			if (j == normalY[i]) {
-				GraphA[i][j] = "*";
+				GraphA[i + 1][j + 1] = "*";
 			}
 		}
 	}
-	for (int i = 0; i <= stepCount; i++) {
-		for (int j = 0; j <= maxNormY; j++) {
+	GraphA[0][maxNormY + 1] = "-Y";
+	GraphA[stepCount + 1][0] = "X";
+	for (int i = 0; i <= stepCount + 1; i++) { //рисует массив - график функции
+		for (int j = 0; j <= maxNormY + 1; j++) {
 			cout << GraphA[i][j];
 		}
 		cout << endl;
