@@ -72,35 +72,73 @@ void drawSymbolPlot(double(&func)(double), double xMax, double xMin, int stepCou
 
 	}
 	cout << "x" << endl;
+	cout << " % - минимальное значение по Y, # - максимальное значение по Y";
 }
-
+void funcInput(int x) {
+	double n, m;
+	int y;
+	if (x == 1) {
+		system("clear");
+		cout << "Введите параметры вывода функции:\n Область определения:\n Минимальное значение X: ";
+		cin >> n;
+		cout << "Максимальное значение X: ";
+		cin >> m;
+		cout << "Шаг: ";
+		cin >> y;
+		system("clear");
+		drawSymbolPlot(linear, n, m, y);
+	}
+	else if (x == 2) {
+		system("clear");
+		cout << "Введите параметры вывода функции:\n Область определения:\n Минимальное значение X: ";
+		cin >> n;
+		cout << "Максимальное значение X: ";
+		cin >> m;
+		cout << "Шаг: ";
+		cin >> y;
+		system("clear");
+		drawSymbolPlot(parabola, n, m, y);
+	}
+	else if (x == 3) {
+		system("clear");
+		cout << "Введите параметры вывода функции:\n Область определения:\n Минимальное значение X: ";
+		cin >> n;
+		cout << "Максимальное значение X: ";
+		cin >> m;
+		cout << "Шаг: ";
+		cin >> y;
+		system("clear");
+		drawSymbolPlot(cube, n, m, y);
+	}
+}
 int main(int x)
 {
 	int y = 1;
+	int system_checkout = 0;
+	int system_graphout = 0;
 	while (y == 1) {
-		cout << "Добро пожаловать в 'Мастер Графиков'. Версия 1.1. \n";
-		cout << "Выберите функцию:\n";
-		cout << " 1 - парабола\n";
-		cout << " 2 - кубическая парабола\n";
-		cout << " 3 - линейная функция\n";
-		cin >> x;
-		if (x == 1) {
-			drawSymbolPlot(parabola, -5, 5, 20);
-			y = 1;
+
+		if (system_checkout == 0) {
+			system("clear");
+			cout << "Добро пожаловать в Графики функций\n 1 - Выбор функции\n 2 - Справка\n Пожалуйста, введите необходимое значение, чтобы продолжить: ";
+			cin >> system_checkout;
 		}
-		else if (x == 2) {
-			drawSymbolPlot(cube, -2.5, 2.5, 20);
-			y = 1;
+		else if (system_checkout == 1) {
+			system("clear");
+			cout << "Вы можете выбрать 3 стандартные функции:\n 1 - Линейная функция \n 2 - парабола\n 3 - кубическая парабола\n Введите необходимое значение, чтобы продолжить: ";
+			cin >> system_graphout;
+			funcInput(system_graphout);
+			break;	
 		}
-		else if (x == 3) {
-			drawSymbolPlot(linear, -5, 5, 20);
-			y = 1;
+		else if (system_checkout == 2) {
+			system("clear");
+			cout << "На данный момент программа работает на со всеми функциями\n и не имеет различного полезного функционала\n Однако я работаю над тем, чтобы программа имела в своём составе этот самый функционал\n и работала корректно." << endl;
+			cout << "За всеми изменениями и продвижениями программы вы можете наблюдать в репозитории на гитхаб 'PseudoGraphik_HM' @Kyushuki" << endl;
+			cout << "Для упрощения поисков вот ссылка на репозиторий - https://github.com/Kyushuki/PseudoGraphik_HM" << endl;
+			cout << "Чтобы выйти обратно в меню введите 0 : ";
+			cin >> system_checkout;
 		}
-		else {
-			cout << "Введено некорректное значение, пожалуйста, завершите программу и начните заново";
-			y = 2;
-		}
+		
 	}
-	return 0;
 }
 
