@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 #include <math.h>
 
-using namespace std;
+using namespace std; //эта версия ветки не имеет каких-либо изменений, по сравнению с GraphArray потому что создал её поздно ночью и хочу спать
 
 double linear(double x) {
 	return x;
@@ -51,7 +51,7 @@ void drawSymbolPlot(double(&func)(double), double xMax, double xMin, int stepCou
 		}
 	}
 
-	string GraphA[stepCount + 2][maxNormY + 2]; 
+	string GraphA[stepCount + 2][maxNormY + 2];
 
 	for (int i = 0; i <= stepCount + 1; i++) { //заполняет массив пустыми значениями(пробелами)
 		for (int j = 0; j <= maxNormY + 1; j++) {
@@ -59,11 +59,11 @@ void drawSymbolPlot(double(&func)(double), double xMax, double xMin, int stepCou
 		}
 	}
 	for (int j = 0; j <= maxNormY + 2; j++) { //заполняет ось ОУ в массиве
-		GraphA[0][j] = "-";
+		GraphA[0][j] = "|";
 	}
 
 	for (int i = 0; i <= stepCount + 1; i++) { //заполняет ось ОХ в массиве
-		GraphA[i][0] = "|";
+		GraphA[i][0] = "-";
 	}
 	for (int i = 0; i <= stepCount + 1; i++) { //заполняет массив значениями графика
 		for (int j = 0; j <= maxNormY + 1; j++) {
@@ -72,18 +72,26 @@ void drawSymbolPlot(double(&func)(double), double xMax, double xMin, int stepCou
 			}
 		}
 	}
-	GraphA[0][maxNormY + 1] = "-Y";
+	GraphA[0][maxNormY + 1] = "Y";
 	GraphA[stepCount + 1][0] = "X";
+
+	string copiedGraphA[maxNormY + 2][maxNormY + 2];
+	for (int i = 0; i <= maxNormY + 1; i++) {
+		for (int j = 0; j <= stepCount + 1; j++) {
+			copiedGraphA[i][j] = GraphA[j][maxNormY + 1 - i];
+		}
+	}
 	for (int i = 0; i <= stepCount + 1; i++) { //рисует массив - график функции
 		for (int j = 0; j <= maxNormY + 1; j++) {
-			cout << GraphA[i][j];
+			cout << copiedGraphA[i][j];
 		}
 		cout << endl;
 	}
 	cout << endl;
 }
 int main() {
-	drawSymbolPlot(cube, -3, 3, 10);
-	drawSymbolPlot(parabola, -5, 5, 20);
 	drawSymbolPlot(linear, -5, 5, 10);
+	drawSymbolPlot(cube, -2, 2, 10);
+	drawSymbolPlot(parabola, -5, 5, 20);
+
 }
