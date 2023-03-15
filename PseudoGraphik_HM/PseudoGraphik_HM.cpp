@@ -1,6 +1,6 @@
 ﻿#include <iostream>
 #include <math.h>
-
+#include <unistd.h>
 using namespace std;
 
 double linear(double x) {
@@ -72,13 +72,14 @@ void drawSymbolPlot(double(&func)(double), double xMax, double xMin, int stepCou
 
 	}
 	cout << "x" << endl;
-	cout << " % - минимальное значение по Y, # - максимальное значение по Y";
+	cout << " % - минимальное значение по Y, # - максимальное значение по Y" << endl;
 }
 void funcInput(int x) {
 	double n, m;
 	int y;
+	system("clear");
 	if (x == 1) {
-		system("clear");
+
 		cout << "Введите параметры вывода функции:\n Область определения:\n Минимальное значение X: ";
 		cin >> n;
 		cout << "Максимальное значение X: ";
@@ -89,7 +90,7 @@ void funcInput(int x) {
 		drawSymbolPlot(linear, n, m, y);
 	}
 	else if (x == 2) {
-		system("clear");
+
 		cout << "Введите параметры вывода функции:\n Область определения:\n Минимальное значение X: ";
 		cin >> n;
 		cout << "Максимальное значение X: ";
@@ -100,7 +101,7 @@ void funcInput(int x) {
 		drawSymbolPlot(parabola, n, m, y);
 	}
 	else if (x == 3) {
-		system("clear");
+
 		cout << "Введите параметры вывода функции:\n Область определения:\n Минимальное значение X: ";
 		cin >> n;
 		cout << "Максимальное значение X: ";
@@ -110,6 +111,9 @@ void funcInput(int x) {
 		system("clear");
 		drawSymbolPlot(cube, n, m, y);
 	}
+	cout << "Через 2 минуты вы автоматически вернётесь в меню выбора функций или перезапустите программу";
+	sleep(120);
+
 }
 int main(int x)
 {
@@ -125,10 +129,17 @@ int main(int x)
 		}
 		else if (system_checkout == 1) {
 			system("clear");
-			cout << "Вы можете выбрать 3 стандартные функции:\n 1 - Линейная функция \n 2 - парабола\n 3 - кубическая парабола\n Введите необходимое значение, чтобы продолжить: ";
+			cout << "Вы можете выбрать 3 стандартные функции:\n 1 - Линейная функция \n 2 - парабола\n 3 - кубическая парабола\n 0 - вернуться в главное меню\n Введите необходимое значение, чтобы продолжить: ";
 			cin >> system_graphout;
-			funcInput(system_graphout);
-			break;	
+			if (system_graphout == 0) {
+				system_checkout = 0;
+			}
+			else {
+				funcInput(system_graphout);
+
+			}
+
+
 		}
 		else if (system_checkout == 2) {
 			system("clear");
@@ -138,7 +149,7 @@ int main(int x)
 			cout << "Чтобы выйти обратно в меню введите 0 : ";
 			cin >> system_checkout;
 		}
-		
+
 	}
 }
 
