@@ -15,7 +15,7 @@ double cube(double x) {
 	return x * x * x;
 }
 
-void drawSymbolPlot(double(&func)(double), double xMax, double xMin, int stepCount) {
+void drawSymbolPlot(double(&func)(double), double xMax, double xMin, int stepCount, int output_checkout) {
 
 	double Step = (xMin - xMax) / stepCount;
 	double x[stepCount];
@@ -50,29 +50,41 @@ void drawSymbolPlot(double(&func)(double), double xMax, double xMin, int stepCou
 			maxNormY = normalY[i];
 		}
 	}
-	for (int j = 0; j <= maxNormY - 1; j++) { // печатает ветку оси OY
-		cout << "_";
-	}
-	cout << "_ y" << endl;
-	for (int i = 0; i <= stepCount; i++) {    // выводит функцию
+	if (output_checkout == 1) { //будет печатать график только если пользователь выбрал этот вариант
+		for (int j = 0; j <= maxNormY - 1; j++) { // печатает ветку оси OY
+			cout << "_";
+		}
+		cout << "_ y" << endl;
+		for (int i = 0; i <= stepCount; i++) {    // выводит функцию
 
-		cout << "|";                          // вывод части рамки по оси х
-		for (int k = 0; k <= normalY[i] - 1; k++) {
-			cout << ' ';
-		}
-		if (normalY[i] == minNormY) { // проверка на минимальное значение по оси у
-			cout << "%" << endl;
-		}
-		else if (normalY[i] == maxNormY) { //проверка на максимальное значение по оси х
-			cout << "#" << endl;
-		}
-		else {
-			cout << '*' << endl;
-		}
+			cout << "|";                          // вывод части рамки по оси х
+			for (int k = 0; k <= normalY[i] - 1; k++) {
+				cout << ' ';
+			}
+			if (normalY[i] == minNormY) { // проверка на минимальное значение по оси у
+				cout << "%" << endl;
+			}
+			else if (normalY[i] == maxNormY) { //проверка на максимальное значение по оси х
+				cout << "#" << endl;
+			}
+			else {
+				cout << '*' << endl;
+			}
 
+		}
+		cout << "x" << endl;
+		cout << " % - минимальное значение по Y, # - максимальное значение по Y" << endl;
 	}
-	cout << "x" << endl;
-	cout << " % - минимальное значение по Y, # - максимальное значение по Y" << endl;
+	else if (output_checkout == 3) {
+		cout << "Локальные минимумы функции: ";
+		for (int i = 0; i <= stepCount; i++) {  
+			if (normalY[i] < minNormY) {
+				cout << x[i] << minNormY;
+			}
+		}
+	}
+
+	
 }
 void funcInput(int x) {
 	double n, m;
@@ -124,7 +136,7 @@ int main(int x)
 
 		if (system_checkout == 0) {
 			system("clear");
-			cout << "Добро пожаловать в Графики функций\n 1 - Выбор функции\n 2 - Справка\n Пожалуйста, введите необходимое значение, чтобы продолжить: ";
+			cout << "Добро пожаловать в Графики функций\n 1 - Вывод функции с графиком\n 2 - Справка\n 3 - Вывод локальных минимумов и максимумов функции \nПожалуйста, введите необходимое значение, чтобы продолжить: ";
 			cin >> system_checkout;
 		}
 		else if (system_checkout == 1) {
@@ -136,7 +148,6 @@ int main(int x)
 			}
 			else {
 				funcInput(system_graphout);
-
 			}
 
 
