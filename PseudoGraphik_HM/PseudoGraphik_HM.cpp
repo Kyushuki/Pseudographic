@@ -75,13 +75,13 @@ void drawSymbolPlot(double(&func)(double), double xMax, double xMin, int stepCou
 	GraphA[0][maxNormY + 1] = "Y";
 	GraphA[stepCount + 1][0] = "X";
 
-	string copiedGraphA[maxNormY + 2][maxNormY + 2];
+	string copiedGraphA[maxNormY + 2][maxNormY + 2]; //поворачивает график функции
 	for (int i = 0; i <= maxNormY + 1; i++) {
 		for (int j = 0; j <= stepCount + 1; j++) {
 			copiedGraphA[i][j] = GraphA[j][maxNormY + 1 - i];
 		}
 	}
-	for (int i = 0; i <= stepCount + 1; i++) { //рисует массив - график функции
+	for (int i = 0; i <= maxNormY + 1; i++) { //рисует массив - график функции
 		for (int j = 0; j <= maxNormY + 1; j++) {
 			cout << copiedGraphA[i][j];
 		}
@@ -91,7 +91,7 @@ void drawSymbolPlot(double(&func)(double), double xMax, double xMin, int stepCou
 }
 int main() {
 	drawSymbolPlot(linear, -5, 5, 10);
-	drawSymbolPlot(cube, -2, 2, 10);
+	drawSymbolPlot(cube, -3, 3, 20);
 	drawSymbolPlot(parabola, -5, 5, 20);
 
 }
