@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <math.h>
 
 using namespace std; //эта версия ветки не имеет каких-либо изменений, по сравнению с GraphArray потому что создал её поздно ночью и хочу спать
@@ -96,11 +96,85 @@ void drawSymbolPlot(double(&func)(double), double xMax, double xMin, int stepCou
 		}
 		cout << endl;
 	}
-	cout << endl;
+
+	cout << "x" << endl;
+	cout << " % - минимальное значение по Y, # - максимальное значение по Y" << endl;
 }
-int main() {
-	drawSymbolPlot(linear, -5, 5, 10);
-	drawSymbolPlot(cube, -2, 2, 10);
-	drawSymbolPlot(parabola, -5, 5, 20);
+void funcInput(int x) {
+	double n, m;
+	int y;
+	system("clear");
+	if (x == 1) {
+
+		cout << "Введите параметры вывода функции:\n Область определения:\n Минимальное значение X: ";
+		cin >> n;
+		cout << "Максимальное значение X: ";
+		cin >> m;
+		cout << "Шаг: ";
+		cin >> y;
+		system("clear");
+		drawSymbolPlot(linear, n, m, y);
+	}
+	else if (x == 2) {
+
+		cout << "Введите параметры вывода функции:\n Область определения:\n Минимальное значение X: ";
+		cin >> n;
+		cout << "Максимальное значение X: ";
+		cin >> m;
+		cout << "Шаг: ";
+		cin >> y;
+		system("clear");
+		drawSymbolPlot(parabola, n, m, y);
+	}
+	else if (x == 3) {
+
+		cout << "Введите параметры вывода функции:\n Область определения:\n Минимальное значение X: ";
+		cin >> n;
+		cout << "Максимальное значение X: ";
+		cin >> m;
+		cout << "Шаг: ";
+		cin >> y;
+		system("clear");
+		drawSymbolPlot(cube, n, m, y);
+	}
+}
+int main(int x)
+{
+	int y = 1;
+	int system_checkout = 0;
+	int system_graphout = 0;
+	while (y == 1) {
+
+		if (system_checkout == 0) {
+			system("clear");
+			cout << "Добро пожаловать в Графики функций\n 1 - Выбор функции\n 2 - Справка\n Пожалуйста, введите необходимое значение, чтобы продолжить: ";
+			cin >> system_checkout;
+		}
+		else if (system_checkout == 1) {
+			system("clear");
+			cout << "Вы можете выбрать 3 стандартные функции:\n 1 - Линейная функция \n 2 - парабола\n 3 - кубическая парабола\n 0 - вернуться в главное меню\n Введите необходимое значение, чтобы продолжить: ";
+			cin >> system_graphout;
+			if (system_graphout == 0) {
+				system_checkout = 0;
+			}
+			else {
+				funcInput(system_graphout);
+
+			}
+
+
+		}
+		else if (system_checkout == 2) {
+			system("clear");
+			cout << "На данный момент программа работает на со всеми функциями\n и не имеет различного полезного функционала\n Однако я работаю над тем, чтобы программа имела в своём составе этот самый функционал\n и работала корректно." << endl;
+			cout << "За всеми изменениями и продвижениями программы вы можете наблюдать в репозитории на гитхаб 'PseudoGraphik_HM' @Kyushuki" << endl;
+			cout << "Для упрощения поисков вот ссылка на репозиторий - https://github.com/Kyushuki/PseudoGraphik_HM" << endl;
+			cout << "Чтобы выйти обратно в меню введите 0 : ";
+			cin >> system_checkout;
+		}
+
+	}
+}
+
 
 }
