@@ -16,7 +16,7 @@ double cube(double x) {
 	return x * x * x;
 }
 
-void drawSymbolPlot(double(&func)(double), double xMax, double xMin, int stepCount) {
+void drawSymbolPlot(double(&func)(double), double xMax, double xMin, int stepCount) { //функция полностью отвечает за то, как будет выводится график функции
 
 	double Step = (xMin - xMax) / stepCount;
 	double x[stepCount];
@@ -97,11 +97,9 @@ void drawSymbolPlot(double(&func)(double), double xMax, double xMin, int stepCou
 		}
 		cout << endl;
 	}
-
-	cout << "x" << endl;
 	cout << " % - минимальное значение по Y, # - максимальное значение по Y" << endl;
 }
-void funcInput(int x) {
+void funcInput(int x) { // исходя из принятого значения выбирает то, что будет выводится на экран и с какими значениями
 	double n, m;
 	int y;
 	system("clear");
