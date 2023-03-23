@@ -68,7 +68,16 @@ void drawSymbolPlot(double(&func)(double), double xMax, double xMin, int stepCou
 	for (int i = 0; i <= stepCount + 1; i++) { //заполняет массив значениями графика
 		for (int j = 0; j <= maxNormY + 1; j++) {
 			if (j == normalY[i]) {
-				GraphA[i + 1][j + 1] = "*";
+
+				if (normalY[i] == minNormY) { // проверка на минимальное значение по оси у
+					GraphA[i + 1][j + 1] = "%";
+				}
+				else if (normalY[i] == maxNormY) { //проверка на максимальное значение по оси х
+					GraphA[i + 1][j + 1] = "#";
+				}
+				else {
+					GraphA[i + 1][j + 1] = "*";
+				}
 			}
 		}
 	}
@@ -91,7 +100,7 @@ void drawSymbolPlot(double(&func)(double), double xMax, double xMin, int stepCou
 }
 int main() {
 	drawSymbolPlot(linear, -5, 5, 10);
-	drawSymbolPlot(cube, -3, 3, 20);
+	drawSymbolPlot(cube, -2, 2, 10);
 	drawSymbolPlot(parabola, -5, 5, 20);
 
 }
