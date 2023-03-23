@@ -1,6 +1,6 @@
 ﻿#include <iostream>
 #include <math.h>
-#include <unistd.h>
+
 using namespace std;
 
 double linear(double x) {
@@ -111,9 +111,6 @@ void funcInput(int x) {
 		system("clear");
 		drawSymbolPlot(cube, n, m, y);
 	}
-	cout << "Через 2 минуты вы автоматически вернётесь в меню выбора функций или перезапустите программу";
-	sleep(120);
-
 }
 int main(int x)
 {
