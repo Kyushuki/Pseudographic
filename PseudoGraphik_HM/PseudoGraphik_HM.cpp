@@ -1,7 +1,8 @@
 #include <iostream>
 #include <math.h>
+#include <unistd.h>
 
-using namespace std; //эта версия ветки не имеет каких-либо изменений, по сравнению с GraphArray потому что создал её поздно ночью и хочу спать
+using namespace std; 
 
 double linear(double x) {
 	return x;
@@ -137,6 +138,7 @@ void funcInput(int x) {
 		system("clear");
 		drawSymbolPlot(cube, n, m, y);
 	}
+	sleep(120);
 }
 int main(int x)
 {
@@ -174,7 +176,4 @@ int main(int x)
 		}
 
 	}
-}
-
-
 }
